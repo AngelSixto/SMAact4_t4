@@ -5,7 +5,7 @@ meta {
 }
 
 put {
-  url: {{baseUrl}}/api/alumnos/{{alumnoId}}
+  url: http://157.180.30.55:8088/api/alumnos/4
   body: json
   auth: bearer
 }
@@ -16,12 +16,12 @@ auth:bearer {
 
 body:json {
   {
-    "numeroControl": "21160100",
-    "nombre": "Angel",
-    "apellidos": "Sixto Morales",
-    "email": "angel.sixto.morales@example.com",
+    "numeroControl": "21160104",
+    "nombre": "Adrea",
+    "apellidos": "Vasquez Cruz",
+    "email": "andyCruz@tecnm.com",
     "semestre": 8,
-    "carreraId": {{carreraId}}
+    "carreraId": 2
   }
 }
 

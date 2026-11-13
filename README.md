@@ -6,7 +6,7 @@
 | **Materia** | Programación Web — Ing. Adelina Martínez Nieto |
 | **Grupo** | 7SD — Instituto Tecnológico de Oaxaca (TecNM) |
 | **Actividad** | Act4. API REST con Spring Boot, Spring Security y JWT (sin frontend) |
-| **URL base de la API (VPS)** | **http://157.180.30.55:8086/api** |
+| **URL base de la API (VPS)** | **http://157.180.30.55:8088/api** |
 | **Colección de Bruno** | [`/bruno`](bruno/) |
 
 ---
@@ -208,7 +208,7 @@ para ver su contenido, pero **no se puede modificar** sin invalidar la firma.
 
 ## 6. Endpoints
 
-URL base local: `http://localhost:8080` · VPS: `http://157.180.30.55:8086`
+URL base local: `http://localhost:8080` · VPS: `http://157.180.30.55:8088`
 
 ### Autenticación (públicos)
 
@@ -411,7 +411,19 @@ bruno/
 **DELETE: eliminar alumno (204 No Content):**
 ![DELETE](capturas/08-eliminar.png)
 
+**POST: crear carrera**
+![POST](capturas/crear-carrera.png)
+
 ### Seguridad y validación
+
+**Alumno no creado alm no existir la carrera**
+![Sin carrera](capturas/val-carrera.png)
+
+**Alumnos duplicados (numero de control)**
+![Numero control](capturas/val-alum-rep.png)
+
+**Alumno sin actulizar por numero de control existente**
+![Actualizar](capturas/val-alum-act.png)
 
 **Endpoint protegido SIN token (401 Unauthorized):**
 ![Sin token](capturas/09-sin-token-401.png)
@@ -422,13 +434,7 @@ bruno/
 **Password guardado como hash BCrypt en MySQL:**
 ![BCrypt](capturas/11-password-bcrypt.png)
 
-### VPS
-
-**Colección ejecutada contra el VPS:**
-![VPS Bruno](capturas/12-vps-bruno.png)
-
-**Las cuatro actividades corriendo en el VPS:**
-![VPS procesos](capturas/13-vps-procesos.png)
+**
 
 ---
 
@@ -460,8 +466,8 @@ La API corre en su **propio puerto (8086)** y **carpeta (`/root/smaact4`)**, sin
 |---|---|---|
 | Act. 1 | `/root/smaact1` | 8082 |
 | Act. 2 | `/root/smaact2` | 8084 |
-| Act. 3 | `/root/smaact3` | 8085 |
-| **Act. 4** | **`/root/smaact4`** | **8086** |
+| Act. 3 | `/root/smaact3` | 8086 |
+| **Act. 4** | **`/root/smaact4`** | **8088** |
 
 ```bash
 # En la PC
@@ -537,8 +543,8 @@ el password recibido con ese hash. Si no coincide, responde 401.
 
 ### d) Enlaces
 
-- **Repositorio de GitHub (README + colección de Bruno):** https://github.com/TU_USUARIO/SMAact4_t4
-- **Colección de Bruno:** https://github.com/TU_USUARIO/SMAact4_t4/tree/main/bruno
-- **URL base de la API en el VPS:** http://157.180.30.55:8086/api
-  - Login: `POST http://157.180.30.55:8086/api/auth/login`
-  - Alumnos: `GET http://157.180.30.55:8086/api/alumnos` (con token)
+- **Repositorio de GitHub (README + colección de Bruno):** https://github.com/AngelSixto/SMAact4_t4.git
+- **Colección de Bruno:** https://github.com/AngelSixto/SMAact4_t4/tree/main/bruno
+- **URL base de la API en el VPS:** http://157.180.30.55:8088/api
+  - Login: `POST http://157.180.30.55:8088/api/auth/login`
+  - Alumnos: `GET http://157.180.30.55:8088/api/alumnos` (con token)
