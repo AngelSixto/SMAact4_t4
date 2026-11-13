@@ -1,0 +1,25 @@
+meta {
+  name: 3. Perfil (protegido)
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/auth/perfil
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Responde 200 OK con el token", function () {
+    expect(res.getStatus()).to.equal(200);
+  });
+}
+
+docs {
+  Regresa los datos del usuario dueño del token (sin password).
+}

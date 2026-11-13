@@ -1,0 +1,21 @@
+meta {
+  name: 1. Listar SIN token (401)
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/alumnos
+  body: none
+  auth: none
+}
+
+tests {
+  test("Rechaza la peticion sin token con 401", function () {
+    expect(res.getStatus()).to.equal(401);
+  });
+}
+
+docs {
+  Prueba que un endpoint protegido RECHAZA las peticiones sin token.
+}

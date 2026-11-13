@@ -1,0 +1,21 @@
+meta {
+  name: 2. Token invalido (401)
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/alumnos
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmYWxzbyJ9.firma-falsa
+}
+
+tests {
+  test("Rechaza un token falso con 401", function () {
+    expect(res.getStatus()).to.equal(401);
+  });
+}

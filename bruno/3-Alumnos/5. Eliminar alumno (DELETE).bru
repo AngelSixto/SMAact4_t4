@@ -1,0 +1,25 @@
+meta {
+  name: 5. Eliminar alumno (DELETE)
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/alumnos/{{alumnoId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Responde 204 No Content", function () {
+    expect(res.getStatus()).to.equal(204);
+  });
+}
+
+docs {
+  Si lo ejecutas otra vez responde 404 porque el alumno ya no existe.
+}

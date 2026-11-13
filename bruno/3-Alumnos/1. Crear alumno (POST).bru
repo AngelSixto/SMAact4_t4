@@ -1,0 +1,49 @@
+meta {
+  name: 1. Crear alumno (POST)
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/alumnos
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "numeroControl": "21160100",
+    "nombre": "Angel",
+    "apellidos": "Sixto Morales",
+    "email": "angel.sixto@example.com",
+    "semestre": 7,
+    "carreraId": {{carreraId}}
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 201) {
+    bru.setEnvVar("alumnoId", res.getBody().id);
+  }
+}
+
+tests {
+  test("Responde 201 Created", function () {
+    expect(res.getStatus()).to.equal(201);
+  });
+  test("Incluye el header Location", function () {
+    expect(res.getHeader("location")).to.be.a("string");
+  });
+  test("La carrera viene como objeto (relacion)", function () {
+    expect(res.getBody().carrera.nombre).to.be.a("string");
+  });
+}
+
+docs {
+  Crea un alumno. Guarda su id en {{alumnoId}}.
+  Si el numero de control ya existe responde 409.
+}

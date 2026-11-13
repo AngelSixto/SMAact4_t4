@@ -1,0 +1,35 @@
+meta {
+  name: 4. Actualizar alumno (PUT)
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/api/alumnos/{{alumnoId}}
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "numeroControl": "21160100",
+    "nombre": "Angel",
+    "apellidos": "Sixto Morales",
+    "email": "angel.sixto.morales@example.com",
+    "semestre": 8,
+    "carreraId": {{carreraId}}
+  }
+}
+
+tests {
+  test("Responde 200 OK", function () {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("El semestre se actualizo a 8", function () {
+    expect(res.getBody().semestre).to.equal(8);
+  });
+}

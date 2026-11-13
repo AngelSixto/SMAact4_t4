@@ -1,0 +1,39 @@
+meta {
+  name: 1. Crear carrera
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{baseUrl}}/api/carreras
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  {
+    "clave": "ISC",
+    "nombre": "Ingenieria en Sistemas Computacionales"
+  }
+}
+
+script:post-response {
+  if (res.getStatus() === 201) {
+    bru.setEnvVar("carreraId", res.getBody().id);
+  }
+}
+
+tests {
+  test("Responde 201 Created", function () {
+    expect(res.getStatus()).to.equal(201);
+  });
+}
+
+docs {
+  Crea la carrera que se asignara a los alumnos. Guarda su id en {{carreraId}}.
+  Si la clave ya existe responde 409.
+}

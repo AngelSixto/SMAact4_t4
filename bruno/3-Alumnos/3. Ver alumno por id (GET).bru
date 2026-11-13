@@ -1,0 +1,21 @@
+meta {
+  name: 3. Ver alumno por id (GET)
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{baseUrl}}/api/alumnos/{{alumnoId}}
+  body: none
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Responde 200 OK", function () {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

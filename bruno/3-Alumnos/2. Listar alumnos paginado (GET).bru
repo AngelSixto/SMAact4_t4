@@ -1,0 +1,36 @@
+meta {
+  name: 2. Listar alumnos paginado (GET)
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{baseUrl}}/api/alumnos?page=0&size=5&sort=apellidos,asc
+  body: none
+  auth: bearer
+}
+
+params:query {
+  page: 0
+  size: 5
+  sort: apellidos,asc
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+tests {
+  test("Responde 200 OK", function () {
+    expect(res.getStatus()).to.equal(200);
+  });
+  test("Respuesta paginada", function () {
+    expect(res.getBody()).to.have.property("contenido");
+    expect(res.getBody()).to.have.property("totalPaginas");
+  });
+}
+
+docs {
+  Paginacion: page (desde 0), size (maximo 50), sort (campo,asc|desc).
+  Filtro opcional: &carreraId=1
+}
